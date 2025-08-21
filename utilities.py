@@ -9,15 +9,29 @@ cv_comparison_experiment_name=f"cv-comparison-{domino_user_name}"
 
 def ensure_mlflow_experiment(experiment_name: str) -> int:
     """
-    Ensure an MLflow experiment with the given name exists.
-    If it does not, create it. Then set it as the current experiment.
+    Ensure an MLflow experiment exists and set it as current.
 
-    Args:
-        experiment_name: Name of the experiment
-        artifact_location: Optional path or URI where artifacts will be stored
+    If an experiment with `experiment_name` does not exist, create it. In both cases,
+    set the active experiment so subsequent runs attach correctly.
 
-    Returns:
-        experiment_id (int)
+    Parameters
+    ----------
+    experiment_name : str
+        The MLflow experiment name.
+
+    Returns
+    -------
+    str
+        The experiment ID.
+
+    Raises
+    ------
+    RuntimeError
+        If the experiment lookup/creation fails.
+
+    Notes
+    -----
+    - The MLflow tracking URI and token are pre-configured in Domino
     """
     try:
         exp = mlflow.get_experiment_by_name(experiment_name)
@@ -36,7 +50,38 @@ def ensure_mlflow_experiment(experiment_name: str) -> int:
 
 def load_registered_yolo_model(model_name: str, version: str = "latest"):
     """
-    Downloads the registered ONNX model version into /tmp and returns a Ultralytics YOLO instance.
+    Resolve a registered ONNX model from MLflow and load it into Ultralytics YOLO.
+
+    The function downloads the specified registered model version to a unique directory
+    under `/tmp` and constructs a `YOLO` instance pointing at the resolved `.onnx` file.
+
+    Parameters
+    ----------
+    model_name : str
+        Registered model name in MLflow Model Registry (e.g., "yolov8n").
+    version : str, optional
+        Registered model version identifier. Use "latest" to resolve the latest version.
+        Otherwise pass a numeric string like "3". Default is "latest".
+
+    Returns
+    -------
+    ultralytics.YOLO
+        A YOLO object ready for inference/validation, configured with `task="detect"`.
+
+    Raises
+    ------
+    FileNotFoundError
+        If no `.onnx` file is found in the downloaded model directory.
+    mlflow.exceptions.MlflowException
+        If MLflow cannot resolve or download the requested model artifacts.
+
+    Notes
+    -----
+    - Artifact layout is flavor-dependent. This function scans the downloaded directory
+      recursively for a single `.onnx` file and loads the first match.
+    - To avoid `/dev/shm` issues during evaluation in constrained environments, run
+      `model.val(..., workers=0)`.
+    - The HW Tier is configured to use shared memory as high as 10GB
     """
     if version == "latest":
         model_uri = f"models:/{model_name}/latest"
