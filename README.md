@@ -82,7 +82,8 @@ evaluate_model(base_path=..., registry_model_name=..., parent_run_id=...)
 
 
 ## Folder structure
-```
+
+
 reference-cv-model-comparison/
 ├── download_models_and_dataset.ipynb     # Downloads models + COCO data
 ├── evaluate_models.ipynb                 # Runs and logs benchmarking
@@ -93,7 +94,7 @@ reference-cv-model-comparison/
 └── coco/
     ├── images/val2017/                   # COCO validation images
     └── artifacts/                        # Metrics, plots, configs
-```
+
 
 
 ## Purpose of this repo
