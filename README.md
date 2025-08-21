@@ -66,11 +66,13 @@ Each run:
   - `mAP`, `AP50`, `Recall`, etc.
   - Inference latency distribution
   - Subset configuration
+  
 - Logs artifacts (e.g., latency plots, config, results)
 
 Uses the function:
 ```python
 evaluate_model(base_path=..., registry_model_name=..., parent_run_id=...)
+```
 
 ### 3. Log Results to MLflow
 
@@ -83,7 +85,7 @@ evaluate_model(base_path=..., registry_model_name=..., parent_run_id=...)
 
 ## Folder structure
 
-
+```
 reference-cv-model-comparison/
 ├── download_models_and_dataset.ipynb     # Downloads models + COCO data
 ├── evaluate_models.ipynb                 # Runs and logs benchmarking
@@ -94,8 +96,7 @@ reference-cv-model-comparison/
 └── coco/
     ├── images/val2017/                   # COCO validation images
     └── artifacts/                        # Metrics, plots, configs
-
-
+```
 
 ## Purpose of this repo
 
@@ -121,7 +122,7 @@ How to use Domino Experiment Manager to:
 
 **Dockerfile instructions** 
 
-```
+```Dockerfile
 RUN pip install torch==2.3.1+cu121 torchvision==0.18.1+cu121 -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install ultralytics
 RUN pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless
