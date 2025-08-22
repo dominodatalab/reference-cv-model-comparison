@@ -74,7 +74,7 @@ Stored under:
 Each run:
 - Loads the model from MLflow registry
 - Evaluates on a consistent image subset (with seed)
-- Records:
+- [Records](metrics.md):
   - `mAP`, `AP50`, `Recall`, etc.
   - Inference latency distribution
   - Subset configuration
