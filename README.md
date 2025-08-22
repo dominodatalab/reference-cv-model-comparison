@@ -55,6 +55,7 @@ How to use Domino Experiment Manager to:
 - Each model evaluation is logged as a **child run**
 - Stores latency, accuracy, and artifacts for analysis
 
+
 ---
 
 ## Workflow Summary
@@ -78,8 +79,11 @@ Each run:
   - `mAP`, `AP50`, `Recall`, etc.
   - Inference latency distribution
   - Subset configuration
-  
+
+
 - Logs artifacts (e.g., latency plots, config, results)
+
+
 
 Uses the function:
 ```python
@@ -94,7 +98,7 @@ evaluate_model(base_path=..., registry_model_name=..., parent_run_id=...)
 
 - All metrics and files are browsable in Domino’s MLflow UI
 
-
+![Experiment Manager](images/experiment_manager.png)
 ## Folder structure
 
 ```
