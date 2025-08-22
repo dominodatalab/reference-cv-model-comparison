@@ -111,7 +111,6 @@ reference-cv-model-comparison/
 ```
 
 
-
 ## Dependiences
 
 - ultralytics
@@ -122,7 +121,9 @@ reference-cv-model-comparison/
 - Domino environment with GPU access (CUDAExecutionProvider)
 - Domino HW Tier with shared memory configured grow upto 10GB
 
-## Domino Environment
+## Domino Setup
+
+### Domino Environment
 
 **Base image**  
 `quay.io/domino/pre-release-environments:project-hub-gpu.main.latest`
@@ -161,7 +162,7 @@ vscode:
     requireSubdomain: false
 ```
 
-## Hardware Tier
+### Hardware Tier
 
 Use a GPU enabled hardware tier although CPU enabled works as well (with performance penalty). If using a GPU
 based hardware tier ensure you use a shared memory of size greater than 10 GB.
@@ -169,8 +170,9 @@ based hardware tier ensure you use a shared memory of size greater than 10 GB.
 ![Example HW Tier](images/hw_tier.png)
 
 
+## Runbook
 
-## Getting Started
+### Getting Started
 
 1. Run `download_models_and_dataset.ipynb` to set up the base folder.
 
@@ -179,7 +181,7 @@ based hardware tier ensure you use a shared memory of size greater than 10 GB.
 3. Explore results in the Domino Experiment Manager (MLflow).
 
 
-## Notes
+### Notes
 
 - Uses deterministic seed to ensure reproducible benchmarking
 
@@ -187,7 +189,7 @@ based hardware tier ensure you use a shared memory of size greater than 10 GB.
 
 - Registered model format expected: ONNX
 
-## Example Output
+### Example Output
 
 - Logged artifacts per model include:
 
