@@ -154,6 +154,14 @@ vscode:
     requireSubdomain: false
 ```
 
+## Hardware Tier
+
+Use a GPU enabled hardware tier although CPU enabled works as well (with performance penalty). If using a GPU
+based hardware tier ensure you use a shared memory of size greater than 10 GB.
+
+![Example HW Tier](images/hw_tier.png)
+
+
 
 ## Getting Started
 
