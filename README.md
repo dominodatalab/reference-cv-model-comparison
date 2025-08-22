@@ -16,7 +16,19 @@ Evaluate and compare different YOLO object detection models under consistent con
 - Inference latency statistics
 - Full evaluation artifacts and configurations
 
+
+
 ---
+
+## Purpose of this repo
+
+How to use Domino Experiment Manager to:
+
+- Organize and visualize benchmarking results
+- For end-to-end ML observability
+
+---
+
 
 ## Key Files
 
@@ -98,12 +110,7 @@ reference-cv-model-comparison/
     └── artifacts/                        # Metrics, plots, configs
 ```
 
-## Purpose of this repo
 
-How to use Domino Experiment Manager to:
-
-- Organize and visualize benchmarking results
-- For end-to-end ML observability
 
 ## Dependiences
 
